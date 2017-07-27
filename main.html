@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<link href="button.css" rel="stylesheet" type="text/css" />
+	<link href="main.css" rel="stylesheet" type="text/css" />
+  	<script type="text/javascript" src="http://libs.baidu.com/jquery/2.1.1/jquery.js"></script>
+	<title>BOBOSNAKE</title>
+</head>
+<body>
+	<a id="start" class="button button-3d button-action button-pill">START</a>
+	<div class="main" id="main">
+		<div id="food" class="food"></div>
+		<div class="snake" id="snake"></div>
+	</div>
+	
+	<button id="top" class="button button-circle button-small">t</button>
+	<button id="bottom" class="button button-circle button-small">b</button>
+	<button id="left" class="button button-circle button-small">l</button>
+	<button id="right" class="button button-circle button-small">r</button>
+	
+	<script src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js" type="text/javascript"></script>
+
+	<script type="text/javascript">
+	$(document).ready(function(e) {
+
+		var times=0, num=200,p="" ;
+
+		var X = $('#snake').offset().top;
+		var Y = $('#snake').offset().left;
+		var xf = $('#food').offset().top;
+		var yf = $('#food').offset().left;
+
+		function binds(){
+		$("#top").bind("click",function(){
+			p="top1";
+			move();
+		});
+		$("#bottom").bind("click",function(){
+			p="top2";
+			move();
+		});
+		$("#left").bind("click",function(){
+			p="left1";
+			move();
+		});
+		$("#right").bind("click",function(){
+			p="left2";
+			move();
+		});
+		}
+		
+		function move(){
+			
+			if(p=="top1"){
+				console.log(p);
+				movetop1();
+			}
+			if(p=="top2"){
+				console.log(p);
+				movetop2();
+			}
+			if(p=="left1"){
+				moveleft1();
+			}
+			if(p=="left1"){
+				moveleft2();
+			}
+		}
+
+		function moveleft1(){
+			setInterval(function flutter() {
+			var Y = $('#snake').offset().top;
+		    var X = $('#snake').offset().left;
+			if(p!="left1"){
+				return;
+				}
+	    	X+=5;
+	        $("#snake").css({"left":X+"px"});
+    		}, 500);
+		}
+		function moveleft2(){
+			setInterval(function flutter() {
+			var Y = $('#snake').offset().top;
+		    var X = $('#snake').offset().left;
+			if(p!="left2"){
+				return;
+				}
+	    	X-=5;
+	        $("#snake").css({"left":X+"px"});
+    		}, 500);
+		}
+		function movetop1(){
+			
+			setInterval(function flutter() {
+			var Y = $('#snake').offset().top;
+		    var X = $('#snake').offset().left;
+			if(p!="top1"){
+				return;
+				}
+	    	Y-=5;
+	        $("#snake").css({"top":Y+"px"});
+	        
+    		}, 500);
+   		}
+		function movetop2(){
+			
+			setInterval(function flutter() {
+			var Y = $('#snake').offset().top;
+		    var X = $('#snake').offset().left;
+			if(p!="top2"){
+				return;
+				}
+	    	Y+=5;
+	        $("#snake").css({"top":Y+"px"});
+    		}, 500);
+		}
+
+		function food(){
+		//x上限，y下限    
+		var x = 580;       
+		var y = 120;           
+		var rand = parseInt(Math.random() * (x - y + 1) + y); 
+		var rand1 = parseInt(Math.random() * (x - y + 1) + y);
+
+		$("#food").css({"left":rand+"px"});
+		$("#food").css({"top":rand1+"px"});
+		}
+
+		function start(){
+			$("#start").bind("click",function(){
+			binds();
+   			move();
+   			food();
+   			rule();
+
+		});
+		}
+
+		function rule(){
+			var i=0;
+			while(i<100){
+				X = $('#snake').offset().top;
+				Y = $('#snake').offset().left;
+				xf = $('#food').offset().top;
+				yf = $('#food').offset().left;
+				console.log("ok");
+
+				if(X==xf&&Y==yf){
+					i++;
+					console.log("ok");
+				food();
+				}
+			}
+		}
+	
+	start();
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+.snake{
+	position:absolute; 
+	left:200px;
+	top:200px;
+	width:10px; 
+	height:10px;
+	background:#F00;
+}
+.main{
+	height:500px;
+	width:500px;
+	border:3px solid #000;
+	margin-top:100px;
+	margin-left: 100px;
+}
+.food{
+	position:absolute; 
+	left:300px;
+	top:300px;
+	width:5px; 
+	height:5px;
+	background:#00FF00;
+}
